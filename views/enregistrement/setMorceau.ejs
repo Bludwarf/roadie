@@ -1,0 +1,8 @@
+
+<h1>Quel morceau a été enregistré dans <%=enregistrement.nom%> le <%= enregistrement.repete.debut.toLocaleDateString() %> ?</h1>
+
+<div class="list-group">
+  <% morceaux.forEach(function(morceau) { %>
+  <a class="list-group-item" href="/enregistrement/<%=enregistrement.id%>/set-morceau/<%=morceau.id%>?from=<%=from%>"><%= morceau.nom %></a>
+  <% }); %>
+</div>

@@ -1,0 +1,35 @@
+<h1><%= groupe.nom %> : Répètes <button type="button" class="btn btn-primary" title="Créer une répète"><span class="glyphicon glyphicon-plus"></span></button></h1>
+<div class="list-group">
+  <%
+    var first = true;
+    var now = new Date();
+
+    // Recherche de la dernière et la prochaine répète
+    var prochaine, derniere;
+    repetes.forEach(function(repete) {
+      if (!derniere && repete.debut < now) derniere = repete;
+      if (repete.debut > now) prochaine = repete;
+    });
+
+    repetes.forEach(function(repete) {
+      var n = repete.enregistrements ? repete.enregistrements.length : 0;
+      var date = repete.debutToString();
+  %>
+  <a class="list-group-item <%= repete === prochaine ? "active" : "" %>" href="/repete/<%=repete.id%>" title="Voir les détails de la répète">
+    Répète du <%=date%>
+    <!--<button type="button" class="btn btn-xs" title="Lire tous les enregistrements de la répète"><span class="glyphicon glyphicon-play-circle"></span></button>
+    <button type="button" class="btn btn btn-xs" title="Télécharger le ZIP de la répète"><span class="glyphicon glyphicon-cloud-download"></span></button>
+    <button type="button" class="btn btn-primary btn-xs" title="Ajouter des enregistrements"><span class="glyphicon glyphicon-download-alt"></span></button>-->
+
+    <% if (repete === prochaine) { %><span class="label label-danger">Prochaine</span><% } %>
+    <% if (repete === derniere)  { %><span class="label label-success">Dernière</span><% } %>
+
+    <!-- Nombre d'enregistrements -->
+    <% if (n) { %>
+    <span class="badge" title="<%=n%> enregistrement<%= n > 1 ? 's' : ''%> disponible<%= n > 1 ? 's' : ''%>"><%=n%></span>
+    <%} %>
+  </a>
+  <%
+    if (first) first = false;
+     }); // foreach %>
+</div>

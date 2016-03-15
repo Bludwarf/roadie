@@ -1,0 +1,97 @@
+<% var currentURLParam = encodeURIComponent(req.url); %>
+
+<img style="height: 64px;" src="<%= repete.local.image %>" />
+<h1>
+  <a class="btn" style="border-color: buttonface;" href="/repetes/" role="button"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp; Répètes</a>
+  Répète du <%= repete.debut.toLocaleDateString() %> <%= repete.local.nom %>
+</h1>
+
+<h2>
+  Enregistrements :
+
+  <% if (repete.enregistrements) { %>
+  <button type="button" class="btn btn-primary" title="Télécharger un ZIP contenant les <%=repete.enregistrements.length%> enregistrements de cette répète"><span class="glyphicon glyphicon-cloud-download"></span>&nbsp; ZIP</button>
+  <button type="button" class="btn" onclick="getListe();" title="Copier les noms des <%=repete.enregistrements.length%> enregistrements (pour un mail par exemple)"><span class="glyphicon glyphicon-th-list"></span>&nbsp; Liste</button>
+  <% } %>
+</h2>
+
+<% if (repete.enregistrements) { %>
+<div id="enregistrements" class="list-group">
+  <%
+    // On enregistre la liste de tous les morceaux pour savoir si on a joué plus d'une fois un morceau
+    var occurrences = {};
+
+    repete.enregistrements.forEach(function(enr) {
+
+      // On a déjà vu le morceau dans la liste ?
+      if (enr.morceau) occurrences[enr.morceau.id] = occurrences[enr.morceau.id] ? occurrences[enr.morceau.id] + 1 : 1;
+  %>
+
+  <!-- Lien pour télécharger directement : https://docs.google.com/uc?export=download&id=<%=enr.id%> -->
+  <li class="list-group-item <%= !enr.morceau ? "list-group-item-warning" : "" %>">
+
+    <% if (enr.audio) { %>
+    <a href="<%= enr.audio %>" type="button" class="btn btn-xs" title="Lire l'enregistrement directement sur le web"><span class="glyphicon glyphicon-play-circle"></span></a>
+    <% } %>
+
+    <% if (enr.morceau) { %>
+    <!-- Morceau connu -->
+    <b><%= enr.morceau.nom %></b> :
+    <% } else { %>
+    <!-- Morceau inconnu -->
+    <a href="/enregistrement/<%=enr.id%>/set-morceau?from=<%=currentURLParam%>" title="Lier à un morceau"><span class="label label-warning">Morceau inconnu</span></a>
+    <% } %>
+
+    <a href="<%= enr.fichier %>" title="Télécharger l'enregistrement"><%= enr.nom %></a>
+
+    <%
+      // On ajoute une étiquette si on déjà rencontré le morceau dans la répète
+      if (enr.morceau && occurrences[enr.morceau.id] > 1) {
+        var occ = occurrences[enr.morceau.id];
+    %>
+    <span class="label label-default" title="C'est là <%=occ%>e fois qu'on a joué &quot;<%=enr.morceau.nom%>&quot; lors de cette répète"><%=occ%></span>
+    <%
+      }
+    %>
+
+  </li>
+
+  <% }); %>
+</div>
+
+<!--<h3>Ajouter des fichiers :</h3>-->
+
+<form name="upload">
+  <input type="file" name="upload" multiple>
+</form>
+
+<script src="/js/upload.js"></script>
+<script>
+
+  // openClassRoom :
+  var form = document.forms.upload;
+  detectUpload(form.upload, "#enregistrements");
+
+  /**
+   * liste des morceaux pour être copié/collé dans un mail par exemple
+   */
+  function getListe() {
+    var liste = [];
+    var parent = $("#enregistrements");
+    parent.find(".list-group-item").each(function() {
+
+      // On prend uniquement le nom du morceau si on le connait
+      var morceauElt = $(this).find("b");
+      var text = morceauElt.size() ? morceauElt.text() : this.innerText;
+      liste.push(text);
+    });
+
+    prompt('Copier la liste des morceaux ci-dessous', liste.join('\n'));
+  }
+
+</script>
+
+<% } else { %>
+Aucun
+<% } %>
+

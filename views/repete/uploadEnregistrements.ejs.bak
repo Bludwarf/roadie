@@ -1,0 +1,141 @@
+<!-- Source : https://developers.google.com/drive/v3/web/manage-uploads -->
+
+<!-- Include the Google CSS package -->
+<!--<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">-->
+
+<!-- You can also include your own CSS styles -->
+<style>
+  form { margin: 40px auto; }
+  input { display:inline-block; margin: 20px; }
+</style>
+
+<script type="text/javascript">
+
+  // The function will be called after the form is submitted
+  function uploadFileOld() {
+    var form = document.forms.upload;
+    form.submit.value = "Uploading File..";
+
+    var url = "https://www.googleapis.com/upload/drive/v3/files?uploadType=media";
+    var data = form.myFile.value;
+
+    /*$.post(url, , {
+
+    })*/
+
+    if (form.myFile.files) {
+      for (var i = 0; i < form.myFile.files.length; ++i) {
+        var file = form.myFile.files[i];
+
+        /*
+         lastModified: 1293837266000
+         lastModifiedDate: Sat Jan 01 2011 00:14:26 GMT+0100 (Paris, Madrid)
+         name: "bee.MP3"
+         size: 7574674
+         type: "audio/mp3"
+         webkitRelativePath: ""
+         */
+
+        console.log("Upload du fichier : %s", file.name);
+        var reader = new FileReader();
+        reader.onload = function (event) {
+          var result = event.target.result;
+          //var fileName = document.getElementById('fileBox').files[0].name; //Should be 'picture.jpg'
+          //$.post('/myscript.php', { data: result, name: fileName }, continueSubmission);
+          //console.dir(result);
+        };
+        //reader.onloadstart = ...
+        reader.onprogress = function(event) {
+          console.log("%s/%s", event.loaded, event.total);
+        };
+        //reader.onabort = ...
+        //reader.onerror = ...
+        //reader.onloadend = ...
+        reader.readAsText(file, 'UTF-8');
+
+
+
+
+
+
+      }
+    }
+
+    else {
+      console.error("Aucun fichier à uploader");
+    }
+
+    return false;
+  }
+
+</script>
+
+<!-- This is the HTML form -->
+<form name="upload" onsubmit="event.preventDefault(); return uploadFile();"><!-- empêche le submit : http://stackoverflow.com/a/8664680/1655155 -->
+
+  <!-- Text input fields -->
+  <!--<input type="text" name="myName" placeholder="Your name..">
+  <input type="email" name="myEmail" placeholder="Your email..">-->
+
+  <!-- File input filed -->
+  <input type="file" name="myFile" multiple>
+
+  <ul class="uploads list-group">
+    <!--<li id="upload-template" class="list-group-item">
+      <span class="mp3">filename.MP3</span>
+      <progress></progress>
+    </li>-->
+  </ul>
+
+  <br/>
+
+  <!-- The submit button. It calls the server side function uploadfiles() on click -->
+  <!--<input type="submit" value="Upload File">-->
+
+</form>
+
+<!-- Here the results of the form submission will be displayed -->
+<div id="output"></div>
+
+<script src="/js/upload.js"></script>
+<script>
+
+  // Création de l'appli
+  // - créer l'appli "Roadie" dans https://console.developers.google.com/apis/credentials?project=roadie-1238
+  // - générer un ID client
+  // - activer l'API Google Drive dans le projet : https://console.developers.google.com/apis/library?project=roadie-1238&q=drive (sinon erreur "Access Not Configured. The API (Drive API) is not enabled for your project. Please use the Google Developers Console to update your configuration.")
+
+  // Google Authent : https://developers.google.com/identity/protocols/OpenIDConnect#setredirecturi
+  // gestion google authent : https://console.developers.google.com/projectselector/apis/api/securetoken.googleapis.com/overview
+  // exemple : https://developers.google.com/oauthplayground/
+  // Étape #1 : Appeler l'URL (pour retour vers http://localhost:1337/repete/1/upload-enregistrements) https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost:1337/repete/1/upload-enregistrements&response_type=code&client_id=384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&access_type=offline
+  // Étape #2 : L'utilisateur autorise la demande, la navigature suit la redirection et dans l'URL se trouve maintenant le authorization code (paramètre "code")
+  // Étape #3 : Demander un token avec l'URL : POST https://www.googleapis.com/oauth2/v3/token
+  // Étape #4 : utiliser le token pendant une heure
+
+  // Fichier créer dans Google Drive avec l'URL : https://www.googleapis.com/upload/drive/v3/files?uploadType=media
+  // exemple avec un MP3 :
+  /*
+
+   {
+   "kind": "drive#file",
+   "id": "0B5UYlocMkj-ebGdRSUlPX1RnZ1k",
+   "name": "bee-20162212.MP3",
+   "mimeType": "audio/mpeg"
+   }
+
+   */
+
+  function getGoogleToken() {
+    //return "AIzaSyCxSmQGKZ9sEr5dfr6RtlRPpvr0_Tls-6w"; // Clé de navigateur 1 : https://console.developers.google.com/apis/credentials/key/0?project=roadie-1238
+    //return "384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com";// Client OAuth : 384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com
+    return "ya29.mgLsv_lV_9jSFP1lUaBecwhussStcy22-rIfqNAnnUhbypYT_X1vJwlO7vMWrcWFP3w";
+  }
+
+  // openClassRoom :
+  var form = document.forms.upload;
+  var fileInput = form.myFile;
+
+  detectUpload(fileInput, ".uploads");
+
+</script>
