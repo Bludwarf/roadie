@@ -1,5 +1,8 @@
 /**
  * Created by mlavigne on 03/03/2016.
+ *
+ * Pour tester : https://developers.google.com/apis-explorer/#p/drive/v3/
+ * Config pour l'appli roadie-1238 : https://console.developers.google.com/apis/credentials?project=roadie-1238
  */
 
 // repeteId
@@ -18,9 +21,9 @@ function getRepeteId() {
 function getGoogleToken() {
   //return "AIzaSyCxSmQGKZ9sEr5dfr6RtlRPpvr0_Tls-6w"; // Clé de navigateur 1 : https://console.developers.google.com/apis/credentials/key/0?project=roadie-1238
   //return "384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com";// Client OAuth : 384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com
-  // 1 - Obtention d'un code : https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost:1337/&response_type=code&client_id=384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&access_type=offline
+  // 1 - Obtention d'un code : https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost:1337/repete/1/upload-enregistrements&response_type=code&client_id=384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&access_type=offline
   // 2 - Échange d'un code contre un token : https://www.googleapis.com/oauth2/v3/token
-  return "ya29.pgLC_VHj7fXTYgQNzuAYQqGvfH3sXDwzelGRNDB732NNTdVbIWBf6L0uH8a6Xtb1SVk";
+  return "ya29.tALBZiR_ytq1mzvnYrtOylDThwAnHBEdbVArwGvLy2Gb5ryBRXesqdWuxSwDvZo-1L2I";
 }
 
 
