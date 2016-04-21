@@ -26,10 +26,10 @@ function getRepeteId() {
 function getGoogleToken(cb) {
   // Pour le changer, visiter : /google/token
   var token = {
-    access_token: "ya29..ywKTC-f79zNFzHM2w9DjLh70dwoUuqF2AaXoXxttUB3xYYCnhRUT_Ax2mubRtgAHhTmO",
+    access_token: "ya29..ywKGxCn6DcsaPcwoaoALUDlRSNJv8GS1MhRhYk0dvJuGEKXKUxnyZnLYhneZHqPX1mFO",
     token_type: "Bearer",
-    expires_in: "2528",
-    expires_at: "2016-04-21T16:45:49.342Z"
+    expires_in: 3600,
+    expires_at: "2016-04-21T17:53:08.978Z"
   };
 
   if (new Date() >= new Date(token.expires_at)) {
@@ -219,8 +219,15 @@ function createAndUploadGoogleFile(file, repeteId, cb) {
         modifiedTime: file.lastModifiedDate.toISOString(), // conservation du timestamp
         mimeType: file.type,
         name: file.name,
-		description: 'Enregistrement pendant la répète #' + repeteId
+		    description: 'Enregistrement pendant la répète #' + repeteId
       };
+
+      // Dossier ?
+      window.gDirId = window.gDirId || prompt("ID du dossier Google Drive");
+      if (window.gDirId) {
+        metadata.parents = [window.gDirId];
+      }
+
       var fileBuffer = this.result;
 //        form.onprogress = function(e) {
 //          progress.value = e.loaded;

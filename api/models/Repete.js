@@ -33,6 +33,13 @@ module.exports = {
       via: 'repete'
     },
 
+    /**
+     * id du dossier dans Google Drive (si existant)
+     */
+    googleId: {
+      type: 'integer'
+    },
+
     next: function(cb) {
 
     },

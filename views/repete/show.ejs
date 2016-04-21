@@ -7,6 +7,11 @@
 <h1>
   <a class="btn" style="border-color: buttonface;" href="/repetes/" role="button"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp; Répètes</a>
   Répète du <%= repete.debut.toLocaleDateString() %> <%= repete.local.nom %>
+  <% if (repete.googleId) { %>
+  <a href="https://drive.google.com/drive/folders/<%= repete.googleId %>" title="Ouvrir le dossier de la répète dans Google Drive">
+    <svg x="0px" y="0px" height="24px" width="24px" focusable="false" viewBox="0 0 24 24" fill="#8f8f8f"><g><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"></path><path d="M0 0h24v24H0z" fill="none"></path></g></svg>
+  </a>
+  <% } %>
 </h1>
 
 <h2>
@@ -73,6 +78,11 @@
 
 <script src="/js/upload.js"></script>
 <script>
+
+  // Id du dossier si existant
+  <% if (repete.googleId) { %>
+  window.gDirId = "<%= repete.googleId %>";
+  <% } %>
 
   // openClassRoom :
   var form = document.forms.upload;
