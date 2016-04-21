@@ -19,11 +19,7 @@ function getRepeteId() {
 }
 
 function getGoogleToken() {
-  //return "AIzaSyCxSmQGKZ9sEr5dfr6RtlRPpvr0_Tls-6w"; // Clé de navigateur 1 : https://console.developers.google.com/apis/credentials/key/0?project=roadie-1238
-  //return "384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com";// Client OAuth : 384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com
-  // 1 - Obtention d'un code : https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost:1337/repete/1/upload-enregistrements&response_type=code&client_id=384973764394-kkgm56vp45i0s7ao7ikt4jodgb95cq8a.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive&access_type=offline
-  // 2 - Échange d'un code contre un token : https://www.googleapis.com/oauth2/v3/token
-  return "ya29.tALBZiR_ytq1mzvnYrtOylDThwAnHBEdbVArwGvLy2Gb5ryBRXesqdWuxSwDvZo-1L2I";
+  return "ya29..ywJ7IZZ9GKQKrlI-JZe1gn4YOACPrOuq71Narb_l0QSfHp_KQnLJ_P2rXVHblwJmW-eA"; //sails.config.google.access_token
 }
 
 
@@ -135,7 +131,7 @@ function uploadGoogleFile(file) {
 /**
  * @param cb {function} : appelé uniquement en cas de succès
  */
-function createAndUploadGoogleFile(file, cb) {
+function createAndUploadGoogleFile(file, repeteId, cb) {
 
   // ui_elements
   var progress = file.ui_elements.progress;
@@ -200,11 +196,13 @@ function createAndUploadGoogleFile(file, cb) {
 //    xhrForm.append('file', file);
 //    req.send(xhrForm);
 
+      // https://developers.google.com/drive/v3/reference/files#resource-representations
       var metadata = {
         createdTime: file.lastModifiedDate.toISOString(), // conservation du timestamp
         modifiedTime: file.lastModifiedDate.toISOString(), // conservation du timestamp
         mimeType: file.type,
-        name: file.name
+        name: file.name,
+		description: 'Enregistrement pendant la répète #' + repeteId
       };
       var fileBuffer = this.result;
 //        form.onprogress = function(e) {
@@ -285,7 +283,7 @@ function detectUpload(fileInput, uploadResults) {
         // Upload
         (function(file) { // unmutable
 
-          createAndUploadGoogleFile(file, function ok(err, googleFile) {
+          createAndUploadGoogleFile(file, getRepeteId(), function ok(err, googleFile) {
 
             /*
              lastModified: 1293837266000
