@@ -10,8 +10,7 @@ module.exports = {
   // TODO : groupe de l'utilisateur actuellement connecté
   getCurrent: function(req, cb) {
     Groupe.findOne({
-      //nom: 'Grand Palace Trio'
-      nom: 'Caféine'
+      nom: sails.config.roadie.groupe.nom
     }).exec(function(err, groupe) {
       if (err) return cb(err);
       cb(null, groupe);
