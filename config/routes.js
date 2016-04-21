@@ -38,7 +38,10 @@ module.exports.routes = {
   'GET /repete/:id':  'RepeteController.show',
   //'GET /repete/:id/upload-enregistrements':  'RepeteController.uploadEnregistrements', // directement dans repete
   'GET /enregistrement/:id/set-morceau': 'EnregistrementController.setMorceau',
-  'GET /enregistrement/:id/set-morceau/:morceauId': 'EnregistrementController.setMorceau'
+  'GET /enregistrement/:id/set-morceau/:morceauId': 'EnregistrementController.setMorceau',
+
+  /** access_token de Google oAuth */
+  'GET /google/token': 'GoogleController.token'
 
   /***************************************************************************
   *                                                                          *

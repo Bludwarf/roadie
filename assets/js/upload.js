@@ -18,8 +18,25 @@ function getRepeteId() {
   return parseInt(matches[1]);
 }
 
-function getGoogleToken() {
-  return "ya29..ywJ7IZZ9GKQKrlI-JZe1gn4YOACPrOuq71Narb_l0QSfHp_KQnLJ_P2rXVHblwJmW-eA"; //sails.config.google.access_token
+/**
+ *
+ * @param cb {function(e, token)}
+ * @returns {string}
+ */
+function getGoogleToken(cb) {
+  // Pour le changer, visiter : /google/token
+  var token = {
+    access_token: "ya29..ywKTC-f79zNFzHM2w9DjLh70dwoUuqF2AaXoXxttUB3xYYCnhRUT_Ax2mubRtgAHhTmO",
+    token_type: "Bearer",
+    expires_in: "2528",
+    expires_at: "2016-04-21T16:45:49.342Z"
+  };
+
+  if (new Date() >= new Date(token.expires_at)) {
+    throw new Error("Token Google expiré. Pour le changer visiter : /google/token");
+  }
+
+  return token.access_token;
 }
 
 
