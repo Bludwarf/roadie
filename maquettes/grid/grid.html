@@ -1,0 +1,49 @@
+<html ng-app="app">
+	<head>
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+		<!--<link rel="stylesheet" type="text/css" href="../../public/ableton-live.css" />-->
+		<link rel="stylesheet" type="text/css" href="grid.css" />
+
+		<style>
+			#audio {
+				width: 800px;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body ng-controller="ctrl">
+
+		<h1>{{liveSet.name}}</h1>
+		
+		<div class="cycle">
+			C
+		</div>
+		<div class="cycle">
+			C
+		</div>
+
+		<!-- Ligne dans la grille -->
+		<div class="part">
+
+			<div class="section">
+
+				<div style="min-height: 1cm; width: 2cm; float: left; margin: 2mm">
+					Couplet
+				</div>
+
+				<div class="pattern">
+
+					<div class="measure Color-{{pattern.colorIndex}}">
+						<span class="chord">{{measure.chord}}</span>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</body>
+</html>
