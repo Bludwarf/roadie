@@ -35,7 +35,9 @@ module.exports.routes = {
   '/': 'RepeteController.list',
 
   'GET /repetes':     'RepeteController.list',
+  'GET /repete/new':  'RepeteController.new',
   'GET /repete/:id':  'RepeteController.show',
+
   //'GET /repete/:id/upload-enregistrements':  'RepeteController.uploadEnregistrements', // directement dans repete
   'GET /enregistrement/:id/set-morceau': 'EnregistrementController.setMorceau',
   'GET /enregistrement/:id/set-morceau/:morceauId': 'EnregistrementController.setMorceau',

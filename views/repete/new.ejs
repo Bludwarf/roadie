@@ -1,0 +1,63 @@
+<form action="/api/repete" method="POST" name="repete" onsubmit="merge()">
+
+  <h1>Nouvelle répète</h1>
+
+  <input type="hidden" name="debut" />
+  <input type="hidden" name="fin" />
+  <input type="hidden" name="groupe" value="1" />
+
+  <fieldset class="form-group">
+    <label for="debutDate">Du</label> <input type="date" name="debutDate" id="debutDate">
+    <label for="debutTime">de</label> <input type="time" name="debutTime" id="debutTime" value="20:00">
+    <label for="finTime">à</label>    <input type="time" name="finTime"   id="finTime"   value="22:00">
+  </fieldset>
+
+  <fieldset class="form-group">
+    <select name="local" class="form-control">
+      <option selected value="1">Au Jardin moderne</option>
+    </select>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <label for="googleId">ID dossier Google Drive</label> <input type="text" name="googleId" id="googleId" onkeyup="refreshGoogleLink(this.value)" onchange="refreshGoogleLink(this.value)">
+    <a id="googleLink" href="https://drive.google.com/drive/folders/0B5UYlocMkj-eNUl0b1pmcGNZRXc" target="_blank" title="Ouvrir le dossier de la répète dans Google Drive">
+      <svg x="0px" y="0px" height="24px" width="24px" focusable="false" viewBox="0 0 24 24" fill="#8f8f8f"><g><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"></path><path d="M0 0h24v24H0z" fill="none"></path></g></svg>
+    </a>
+  </fieldset>
+
+  <fieldset class="form-group">
+    <input class="btn btn-primary" type="submit" value="Créer"/>
+  </fieldset>
+
+  <!-- DateTimePicker -->
+  <!--<div style="overflow:hidden;">
+    <div class="form-group">
+      <div class="row">
+        <div class="col-md-8">
+          <div id="datetimepicker"></div>
+        </div>
+      </div>
+    </div>
+  </div>-->
+
+</form>
+
+<script>
+
+  var form = document.forms.repete;
+
+  function merge() {
+    form.debut.value = form.debutDate.value + ' ' + form.debutTime.value;
+    form.fin.value   = form.debutDate.value + ' ' + form.finTime.value;
+  }
+
+  var link = document.getElementById("googleLink");
+  link.originalDisplay = link.style.display;
+  link.style.display = 'none';
+
+  function refreshGoogleLink(googleId) {
+    link.style.display = googleId ? link.originalDisplay : 'none';
+    link.href = "https://drive.google.com/drive/folders/" + googleId;
+  }
+
+</script>

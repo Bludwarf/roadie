@@ -89,6 +89,15 @@ module.exports = {
         return res.serverError(err);
       });
 
+  },
+
+  /**
+   * Formulaire pour créer une répète
+   * @param req
+   * @param res
+   */
+  new: function(req, res) {
+    res.view();
   }
 
 };

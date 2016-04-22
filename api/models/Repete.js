@@ -37,7 +37,7 @@ module.exports = {
      * id du dossier dans Google Drive (si existant)
      */
     googleId: {
-      type: 'integer'
+      type: 'string'
     },
 
     next: function(cb) {

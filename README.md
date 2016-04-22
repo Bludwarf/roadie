@@ -36,3 +36,9 @@ Traitements :
   - Crée la répète pour ce groupe
   - On ordonne les fichiers uploadés en fonction de l'ordre d'upload
   - L'idéal serait d'activer une option permettant de choisir si on peut tenir compte du timestamp du fichier
+
+# Dev
+
+## Installation de datetimepicker
+
+  bower install eonasdan-bootstrap-datetimepicker#latest --save

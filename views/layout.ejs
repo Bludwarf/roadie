@@ -33,10 +33,26 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/build/css/bootstrap-datetimepicker.min.css">
     <!--STYLES END-->
   </head>
 
   <body>
+
+    <!-- Variables diverses -->
+    <script>
+
+      <% if (req.session.google && req.session.google.token) { %>
+      googleToken = {
+        access_token: "<%=req.session.google.token.access_token%>",
+        token_type: "<%=req.session.google.token.token_type%>",
+        expires_in: <%=req.session.google.token.expires_in%>,
+        expires_at: "<%=req.session.google.token.expires_at%>"
+      };
+      <% } %>
+
+    </script>
+
     <div class="container">
       <%- body %>
     </div>
@@ -94,8 +110,13 @@
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
-    <script src="/js/dependencies/jquery-1.12.1.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/dist/jquery.js"></script>
+    <script src="/js/moment.js"></script>
+    <script src="/js/dist/js/bootstrap.js"></script>
+    <script src="/js/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="/js/builds/moment-timezone-with-data-2010-2020.js"></script>
+    <script src="/js/locale/fr.js"></script>
+    <script src="/js/roadie.js"></script>
     <script src="/js/upload.js"></script>
     <!--SCRIPTS END-->
   </body>

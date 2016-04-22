@@ -5,13 +5,6 @@
  * Config pour l'appli roadie-1238 : https://console.developers.google.com/apis/credentials?project=roadie-1238
  */
 
-// repeteId
-//Object.defineProperty(this, 'repeteId', {
-//  get: function() {
-//    return getRepeteId();
-//  }
-//});
-
 function getRepeteId() {
   var getRepeteId = /\/repete\/(\d+)\/?/; // on récup l'id de la répète dans l'URL
   var matches = getRepeteId.exec(location.pathname);
@@ -25,12 +18,10 @@ function getRepeteId() {
  */
 function getGoogleToken(cb) {
   // Pour le changer, visiter : /google/token
-  var token = {
-    access_token: "ya29..ywKGxCn6DcsaPcwoaoALUDlRSNJv8GS1MhRhYk0dvJuGEKXKUxnyZnLYhneZHqPX1mFO",
-    token_type: "Bearer",
-    expires_in: 3600,
-    expires_at: "2016-04-21T17:53:08.978Z"
-  };
+  if (!googleToken) {
+    throw new Error("Aucun Token Google, veuillez visiter : /google/token");
+  }
+  var token = googleToken;
 
   if (new Date() >= new Date(token.expires_at)) {
     throw new Error("Token Google expiré. Pour le changer visiter : /google/token");
@@ -331,8 +322,14 @@ function detectUpload(fileInput, uploadResults) {
             };
 
             //if (file.size != 'undefined') sql.taille = parseInt(file.size); // FIXME: parseInt ne marche pas ?
-            io.socket.post('/enregistrement', sql, function(enrSql, jwRes) {
+            io.socket.post('/api/enregistrement', sql, function(enrSql, jwRes) {
 
+              if (jwRes.statusCode >= 300) {
+                var item = $(file.ui_elements.li);
+                item.removeClass("list-group-item-success");
+                item.addClass("list-group-item-danger");
+                throw new Error("Erreur " + jwRes.statusCode + " reçue : impossible de créer l'enregistrement en base");
+              }
               console.dir(jwRes);
               console.dir(file.name);
               var item = $(file.ui_elements.li);
