@@ -1,2 +1,0 @@
-Page de formulaire
-	1 - choisir une date et une heure : https://eonasdan.github.io/bootstrap-datetimepicker/
