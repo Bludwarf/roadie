@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS `enregistrement` (
   KEY `FK_enregistrement_morceau` (`morceau`),
   CONSTRAINT `FK_enregistrement_morceau` FOREIGN KEY (`morceau`) REFERENCES `morceau` (`id`),
   CONSTRAINT `FK_enregistrement_repete` FOREIGN KEY (`repete`) REFERENCES `repete` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=313 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=330 DEFAULT CHARSET=utf8;
 
--- Export de données de la table roadie.enregistrement : ~120 rows (environ)
+-- Export de données de la table roadie.enregistrement : ~214 rows (environ)
 /*!40000 ALTER TABLE `enregistrement` DISABLE KEYS */;
 REPLACE INTO `enregistrement` (`nom`, `fichier`, `timestamp`, `taille`, `audio`, `duree`, `repete`, `ordre`, `morceau`, `id`, `createdAt`, `updatedAt`) VALUES
 	('new.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eQUJnelJ4S2Q1YTQ', '2011-01-01 01:36:36', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eQUJnelJ4S2Q1YTQ', NULL, 1, NULL, NULL, 113, '2016-03-04 18:05:50', '2016-03-04 18:05:50'),
@@ -235,7 +235,24 @@ REPLACE INTO `enregistrement` (`nom`, `fichier`, `timestamp`, `taille`, `audio`,
 	('moon.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-ecWI2N3JuWEtaZFk', '2016-04-15 22:34:16', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-ecWI2N3JuWEtaZFk', NULL, 23, NULL, 9, 309, '2016-04-22 13:31:15', '2016-04-22 13:31:45'),
 	('sex.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eNzl6cjZGTmpodGc', '2016-04-15 22:34:16', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eNzl6cjZGTmpodGc', NULL, 23, NULL, 6, 310, '2016-04-22 13:31:16', '2016-04-22 13:31:48'),
 	('duck.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eS2dHOU4tdEduMGM', '2016-04-15 22:34:16', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eS2dHOU4tdEduMGM', NULL, 23, NULL, 4, 311, '2016-04-22 13:31:18', '2016-04-22 13:31:50'),
-	('devils - push.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eYWx3ZXZ0cmtDak0', '2016-04-15 22:34:16', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eYWx3ZXZ0cmtDak0', NULL, 23, NULL, 3, 312, '2016-04-22 13:31:18', '2016-04-22 13:31:52');
+	('devils - push.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eYWx3ZXZ0cmtDak0', '2016-04-15 22:34:16', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eYWx3ZXZ0cmtDak0', NULL, 23, NULL, 3, 312, '2016-04-22 13:31:18', '2016-04-22 13:31:52'),
+	('chance (1).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eTXpYUzFZZUdVUU0', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eTXpYUzFZZUdVUU0', NULL, 24, NULL, 2, 313, '2016-04-27 10:13:55', '2016-04-27 10:14:46'),
+	('chance (2).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eMmJYQ21vZi1GT0U', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eMmJYQ21vZi1GT0U', NULL, 24, NULL, 2, 314, '2016-04-27 10:14:04', '2016-04-27 10:14:50'),
+	('postmortem (5).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eZjZ6WGlvWWdIbVE', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eZjZ6WGlvWWdIbVE', NULL, 24, NULL, 10, 315, '2016-04-27 10:14:05', '2016-04-27 10:16:53'),
+	('cosmic (1).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eT0Z5YnlEUlFZVDA', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eT0Z5YnlEUlFZVDA', NULL, 24, NULL, 16, 316, '2016-04-27 10:14:06', '2016-04-27 10:15:14'),
+	('chance (3).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eZkkySkFvOUdTbG8', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eZkkySkFvOUdTbG8', NULL, 24, NULL, 2, 317, '2016-04-27 10:14:08', '2016-04-27 10:15:17'),
+	('postmortem (4).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eVll6Zmo4Q0MzZWs', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eVll6Zmo4Q0MzZWs', NULL, 24, NULL, 10, 318, '2016-04-27 10:14:19', '2016-04-27 10:16:56'),
+	('postmortem (3).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eWnM5LWhuMk1OckU', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eWnM5LWhuMk1OckU', NULL, 24, NULL, 10, 319, '2016-04-27 10:14:20', '2016-04-27 10:16:59'),
+	('postmortem (2).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eVDZLQXZZTnQ3TDg', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eVDZLQXZZTnQ3TDg', NULL, 24, NULL, 10, 320, '2016-04-27 10:14:30', '2016-04-27 10:17:01'),
+	('postmortem (1).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eckg5eU1kUUJiS2c', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eckg5eU1kUUJiS2c', NULL, 24, NULL, 10, 321, '2016-04-27 10:14:33', '2016-04-27 10:17:03'),
+	('kiss.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eenE2QlpsREVnSTQ', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eenE2QlpsREVnSTQ', NULL, 24, NULL, 7, 322, '2016-04-27 10:14:34', '2016-04-27 10:15:22'),
+	('lips.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eRWdjZnllMVMwWXc', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eRWdjZnllMVMwWXc', NULL, 24, NULL, 8, 323, '2016-04-27 10:14:36', '2016-04-27 10:15:25'),
+	('helico.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eX08tNlZXQk5jZGM', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eX08tNlZXQk5jZGM', NULL, 24, NULL, 5, 324, '2016-04-27 10:14:38', '2016-04-27 10:15:27'),
+	('moon.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-ec05xUXA0bnZpQjQ', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-ec05xUXA0bnZpQjQ', NULL, 24, NULL, 9, 325, '2016-04-27 10:14:38', '2016-04-27 10:15:30'),
+	('sex.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eaHFyVGhtelE2M2s', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eaHFyVGhtelE2M2s', NULL, 24, NULL, 6, 326, '2016-04-27 10:14:38', '2016-04-27 10:15:33'),
+	('cosmic (2).MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eSTk2elJTenBDZW8', '2016-04-22 22:17:12', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eSTk2elJTenBDZW8', NULL, 24, NULL, 16, 327, '2016-04-27 10:14:39', '2016-04-27 10:15:43'),
+	('duck.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eTW85OFhtamh2LTA', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eTW85OFhtamh2LTA', NULL, 24, NULL, 4, 328, '2016-04-27 10:14:40', '2016-04-27 10:15:36'),
+	('devils push.MP3', 'https://docs.google.com/uc?export=download&id=0B5UYlocMkj-eT0Y2TjRGWUpQRGs', '2016-04-22 22:17:10', NULL, 'https://drive.google.com/open?id=0B5UYlocMkj-eT0Y2TjRGWUpQRGs', NULL, 24, NULL, 3, 329, '2016-04-27 10:14:40', '2016-04-27 10:15:39');
 /*!40000 ALTER TABLE `enregistrement` ENABLE KEYS */;
 
 
@@ -345,21 +362,21 @@ CREATE TABLE IF NOT EXISTS `morceau` (
 /*!40000 ALTER TABLE `morceau` DISABLE KEYS */;
 REPLACE INTO `morceau` (`nom`, `groupe`, `id`, `createdAt`, `updatedAt`) VALUES
 	('Bee', 1, 1, '2016-03-01 12:12:39', '2016-04-22 13:31:22'),
-	('Second Chance', 1, 2, '2016-03-01 12:15:18', '2016-04-22 13:31:37'),
-	('Devil', 1, 3, '2016-03-01 12:15:25', '2016-04-22 13:31:52'),
-	('Duck', 1, 4, '2016-03-01 12:15:31', '2016-04-22 13:31:50'),
-	('Hélico', 1, 5, '2016-03-01 12:15:36', '2016-04-22 13:41:18'),
-	('I Want Your Sex', 1, 6, '2016-03-01 12:15:42', '2016-04-22 13:31:48'),
-	('Kiss', 1, 7, '2016-03-01 12:15:50', '2016-04-22 13:31:40'),
-	('Lips', 1, 8, '2016-03-01 12:15:54', '2016-04-22 13:31:30'),
-	('Moon', 1, 9, '2016-03-01 12:16:00', '2016-04-22 13:31:45'),
-	('(new) not NES', 1, 10, '2016-03-01 12:16:05', '2016-04-22 13:40:51'),
+	('Second Chance', 1, 2, '2016-03-01 12:15:18', '2016-04-27 10:15:17'),
+	('Devil', 1, 3, '2016-03-01 12:15:25', '2016-04-27 10:15:39'),
+	('Duck', 1, 4, '2016-03-01 12:15:31', '2016-04-27 10:15:36'),
+	('Hélico', 1, 5, '2016-03-01 12:15:36', '2016-04-27 10:15:27'),
+	('I Want Your Sex', 1, 6, '2016-03-01 12:15:42', '2016-04-27 10:15:33'),
+	('Kiss', 1, 7, '2016-03-01 12:15:50', '2016-04-27 10:15:22'),
+	('Lips', 1, 8, '2016-03-01 12:15:54', '2016-04-27 10:15:25'),
+	('Moon', 1, 9, '2016-03-01 12:16:00', '2016-04-27 10:15:30'),
+	('postmortem', 1, 10, '2016-03-01 12:16:05', '2016-04-27 10:17:03'),
 	('Push', 1, 11, '2016-03-01 12:16:17', '2016-04-21 18:11:49'),
 	('Yellove', 1, 12, '2016-03-01 12:16:22', '2016-04-22 13:31:32'),
 	('Downtown', 2, 13, '2016-03-29 17:54:26', '2016-03-29 17:54:31'),
 	('You Know Why', 2, 14, '2016-03-29 17:54:51', '2016-03-29 17:54:55'),
 	('NES', 1, 15, '2016-04-22 13:32:17', '2016-04-22 13:37:18'),
-	('Cosmic', 1, 16, '2016-04-22 13:32:37', '2016-04-22 13:32:41');
+	('Cosmic', 1, 16, '2016-04-22 13:32:37', '2016-04-27 10:15:42');
 /*!40000 ALTER TABLE `morceau` ENABLE KEYS */;
 
 
@@ -379,9 +396,9 @@ CREATE TABLE IF NOT EXISTS `repete` (
   KEY `FK_répète_groupe` (`groupe`),
   CONSTRAINT `FK_repete_local` FOREIGN KEY (`local`) REFERENCES `local` (`id`),
   CONSTRAINT `FK_répète_groupe` FOREIGN KEY (`groupe`) REFERENCES `groupe` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
--- Export de données de la table roadie.repete : ~9 rows (environ)
+-- Export de données de la table roadie.repete : ~14 rows (environ)
 /*!40000 ALTER TABLE `repete` DISABLE KEYS */;
 REPLACE INTO `repete` (`debut`, `fin`, `groupe`, `local`, `notes`, `id`, `googleId`, `createdAt`, `updatedAt`) VALUES
 	('2016-02-26 20:00:00', '2016-02-26 22:00:00', 1, 1, NULL, 1, NULL, '2016-03-01 16:07:37', '2016-03-01 16:07:37'),
@@ -389,15 +406,16 @@ REPLACE INTO `repete` (`debut`, `fin`, `groupe`, `local`, `notes`, `id`, `google
 	('2016-03-04 19:00:00', '2016-03-04 21:00:00', 1, 1, NULL, 3, NULL, '2016-03-01 16:07:37', '2016-03-01 16:07:37'),
 	('2016-03-11 19:00:00', '2016-03-11 21:00:00', 1, 1, NULL, 4, NULL, '2016-03-03 16:55:25', '2016-03-03 16:55:26'),
 	('2016-03-15 19:00:00', '2016-03-29 21:00:00', 2, 3, NULL, 5, NULL, '2016-03-29 15:23:30', '2016-03-29 15:23:30'),
-	('2016-04-01 20:00:00', '2016-04-01 22:00:00', 1, 1, NULL, 7, '0B5UYlocMkj-eR3JJMm5keDR1aFk', '2016-04-21 12:32:23', '2016-04-21 18:24:23'),
-	('2016-03-11 20:00:00', '2016-03-11 22:00:00', 1, 1, NULL, 8, NULL, '2016-04-21 12:34:25', '2016-04-21 12:43:04'),
+	('2016-04-01 19:00:00', '2016-04-01 21:00:00', 1, 1, NULL, 7, '0B5UYlocMkj-eR3JJMm5keDR1aFk', '2016-04-21 12:32:23', '2016-04-27 10:12:45'),
+	('2016-03-11 19:00:00', '2016-03-11 21:00:00', 1, 1, NULL, 8, NULL, '2016-04-21 12:34:25', '2016-04-27 10:12:55'),
 	('2016-02-19 20:00:00', '2016-02-19 22:00:00', 1, 1, NULL, 9, NULL, '2016-04-21 12:42:45', '2016-04-21 12:42:45'),
 	('2016-01-28 20:00:00', '2016-01-28 22:00:00', 1, 1, NULL, 10, NULL, '2016-04-21 18:07:00', '2016-04-21 18:07:00'),
 	('2016-01-21 20:00:00', '2016-04-21 22:00:00', 1, 1, NULL, 11, '0B5UYlocMkj-eNUl0b1pmcGNZRXc', '2016-04-21 18:41:35', '2016-04-21 18:42:19'),
 	('2016-01-08 20:00:00', '2016-01-08 22:00:00', 1, 1, NULL, 12, '0B5UYlocMkj-eT2QwYkI0OUxpOG8', '2016-04-21 18:52:09', '2016-04-21 18:52:25'),
-	('2016-03-18 20:00:00', '2016-03-18 22:00:00', 1, 1, NULL, 13, '0B5UYlocMkj-eVEprZmE2WFB4cmc', '2016-04-21 18:55:48', '2016-04-21 18:55:48'),
+	('2016-03-18 19:00:00', '2016-03-18 21:00:00', 1, 1, NULL, 13, '0B5UYlocMkj-eVEprZmE2WFB4cmc', '2016-04-21 18:55:48', '2016-04-27 10:12:49'),
 	('2015-12-04 20:00:00', '2015-12-04 22:00:00', 1, 1, NULL, 14, '0B5UYlocMkj-edjVRWEFrd2djWUU', '2016-04-21 18:58:45', '2016-04-21 18:58:45'),
-	('2016-04-15 20:00:00', '2016-04-15 22:00:00', 1, 1, NULL, 23, '0B5UYlocMkj-eXzFxRUZldFdwQ2c', '2016-04-22 13:14:23', '2016-04-22 13:14:23');
+	('2016-04-15 19:00:00', '2016-04-15 21:00:00', 1, 1, NULL, 23, '0B5UYlocMkj-eXzFxRUZldFdwQ2c', '2016-04-22 13:14:23', '2016-04-27 10:12:40'),
+	('2016-04-22 19:00:00', '2016-04-22 21:00:00', 1, 1, NULL, 24, '0B5UYlocMkj-ebVN3ZHZfR3U0UUE', '2016-04-27 10:13:16', '2016-04-27 10:13:16');
 /*!40000 ALTER TABLE `repete` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
