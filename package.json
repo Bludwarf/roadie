@@ -14,7 +14,7 @@
   },
   "name": "roadie",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Assitant pour la gestion d'un groupe de musique",
   "keywords": [
     "roadie",
