@@ -41,4 +41,29 @@ Traitements :
 
 ## Installation de datetimepicker
 
-  bower install eonasdan-bootstrap-datetimepicker#latest --save
+    bower install eonasdan-bootstrap-datetimepicker#latest --save
+
+## Installation de waterlock-local-auth
+
+Site : [http://waterlock.ninja/documentation/]
+
+La commande de base :
+
+    npm install --save waterlock-local-auth
+
+Si l'erreur suivante apparait :
+
+    MSBUILD : error : MSB3411 : Impossible de charger le composant Visual C++ "VCBuild.exe". Si le composant n'est pas installé, vous devez 1) installer le Kit de développement Microsoft Windows SDK pour Windows Server
+    2008 et .NET Framework 2.0 3.5, ou 2) installer Visual Studio 2008.
+
+Installer `Microsoft Visual Studio C++ 2012/13 for Windows Desktop` ([Express][msvc2012] par exemple) (cf [Doc node-gyp][node-gyp]).
+Puis indiquer à npm la version de VS utilisée avec ([src][629]) :
+
+	npm config set msvs_version 2015 --global
+	
+Si le `sails lift` ne marche plus, il faudra peut-être supprimer les modules sails et sails-* puis les réinstaller avec `npm install`.
+
+
+[msvc2012]: http://go.microsoft.com/?linkid=9816758
+[node-gyp]: https://github.com/nodejs/node-gyp/tree/abad2b58c03de713eb1805f7a681b1084c08b316
+[629]: https://github.com/nodejs/node-gyp/issues/629#issuecomment-153196245
