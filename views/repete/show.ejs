@@ -1,7 +1,17 @@
 <% var currentURLParam = encodeURIComponent(req.url); %>
 
 <% if (repete.local && repete.local.image) { %>
-<img style="height: 64px;" src="<%= repete.local.image %>" />
+<style>
+  body {
+    background: url("<%= repete.local.image %>") black center center;
+    background-size: cover;
+  }
+
+  body > div.container {
+    background-color: white;
+  }
+
+</style>
 <% } %>
 
 <h1>
