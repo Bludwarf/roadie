@@ -90,6 +90,11 @@ module.exports = {
           req.session.google = req.session.google || {};
           req.session.google.token = token;
 
+          // Redirect vers la page réellement demandée
+          if (!req.baseUrl.match('/google/token$')) {
+            return res.redirect(req.baseUrl);
+          }
+
           res.send(token);
         });
       }
