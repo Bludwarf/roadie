@@ -12,6 +12,7 @@ module.exports = {
   list: function(req, res) {
 
     GroupeController.getCurrent(req, function(err, groupe) {
+      if (err) return res.serverError(err);
 
       Repete.find({
         groupe: groupe.id
