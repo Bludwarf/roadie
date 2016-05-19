@@ -1,7 +1,21 @@
 <% var currentURLParam = encodeURIComponent(req.url); %>
 
 <% if (repete.local && repete.local.image) { %>
-<img style="height: 64px;" src="<%= repete.local.image %>" />
+<style>
+  body {
+    background: url("<%= repete.local.image %>") white center center;
+    background-size: cover;
+  }
+
+  html {
+    background-color: white;
+  }
+
+  body > div.container {
+    background-color: white;
+  }
+
+</style>
 <% } %>
 
 <h1>
@@ -71,9 +85,19 @@
 
 <form name="upload">
   <input type="file" name="upload" multiple>
+
+  <br/>
   <p>ou ajouter un fichier déjà sur Google Drive : </p>
   <input type="text" name="googleLink" placeholder="ID du fichier dans Google Drive" />
-  <input type="button" name="googleLinkButton" value="Ajouter" onclick="addGoogleFile(this.form.googleLink.value)" />
+  <input type="button" name="googleLinkButton" value="Ajouter" onclick="importGoogleFile(this.form.googleLink.value)" />
+
+  <% if (repete.googleId) { %>
+  <br/>
+  <br/>
+  <p>ou tout importer d'un coup depuis le dossier Google Drive :</p>
+  <input type="button" name="googleLinkButton" value="Importer tout le dossier" onclick="importGoogleFolder('<%= repete.googleId %>')" />
+  <% } %>
+
 </form>
 
 <script src="/js/upload.js"></script>
@@ -87,6 +111,9 @@
   // openClassRoom :
   var form = document.forms.upload;
   detectUpload(form.upload, "#enregistrements");
+
+  // Contexte
+  var repeteId = <%= repete.id %>;
 
   /**
    * liste des morceaux pour être copié/collé dans un mail par exemple
@@ -105,106 +132,7 @@
     prompt('Copier la liste des morceaux ci-dessous', liste.join('\n'));
   }
 
-  /**
-   * Ajoute dans la base un lien vers un fichier qui se trouve déjà sur Google Drive
-   * (pas besoin de l'uploader)
-   *
-   * On passe par l'URL : https://www.googleapis.com/drive/v3/files/0B2bkDQNfrAz8UEkydDdEY2xUSEk?key={YOUR_API_KEY}
-   *
-   * @param link lien de partage du fichier Google Drive
-   */
-  function addGoogleFile(link) {
 
-    var googleFileId = link; // TODO : temporairement on passe directement l'ID
-    var keyId = "AIzaSyCxSmQGKZ9sEr5dfr6RtlRPpvr0_Tls-6w";
-    var headers = new Headers();
-    headers.append("Authorization", "Bearer " + getGoogleToken());
-
-    var fields = [
-      'id',
-      'name',
-      'modifiedTime'
-    ];
-
-//    var url = new URL("https://www.googleapis.com/drive/v3/files/" + googleFileId);
-//    if (!URL.prototype.searchParams) {
-//
-//      // URLSearchParams >= 49 pour Chrome
-//      if (typeof URLSearchParams === 'undefined') {
-//        var URLSearchParams = function() {
-//          this.params = {};
-//        }
-//
-//        URLSearchParams.prototype.append = function(key, value) {
-//          this.params[key] = value;
-//        }
-//
-//        window.URLSearchParams = URLSearchParams;
-//      }
-//
-//      URL.prototype.searchParams = new URLSearchParams();
-//    }
-//    url.searchParams.append();
-
-    // https://fetch.spec.whatwg.org/#fetch-method
-    fetch('https://www.googleapis.com/drive/v3/files/'+googleFileId+'?fields='+encodeURIComponent(fields.join(','))+'&key='+keyId, {
-      headers: headers
-    }).then(function(res) {
-      return res.json();
-    }).then(function(googleFile) {
-      return useGoogleJsonFile(googleFile, createEnregistrement)
-    });
-  }
-
-  /**
-   * Exemple :
-   *
-   * @param googleFile {{
-           kind: "drive#file",
-           id: "0B2bkDQNfrAz8UEkydDdEY2xUSEk",
-           name: "Downtown.mp3",
-           mimeType: "audio/mpeg",
-           modifiedTime: "2016-03-17T13:46:06.308Z"
-         }}
-   * @param cb {function(sql)}
-   */
-  function useGoogleJsonFile(googleFile, cb) { // JSON parsé
-//      console.dir(json);
-
-    // Id de la répète courante
-    var repete = parseInt(location.pathname.substring(location.pathname.lastIndexOf('/') + 1));
-
-    // Création de l'objet enregistrement avant mise en BDD
-    var sql = {
-      nom: googleFile.name,
-      timestamp: googleFile.modifiedTime,
-      fichier:  'https://docs.google.com/uc?export=download&id=' + googleFile.id,
-      audio: 'https://drive.google.com/open?id=' + googleFile.id,
-      // duree: TODO,
-      repete: getRepeteId()
-    };
-
-    return cb(sql);
-  }
-
-  /**
-   *
-   * @param sql {{
-      nom: string,
-      timestamp: date,
-      fichier:  'https://docs.google.com/uc?export=download&id={googleFile.id}',
-      audio: 'https://drive.google.com/open?id={googleFile.id}',
-      duree: Number,
-      repete: Number
-    }}
-   */
-  function createEnregistrement(sql) {
-    io.socket.post('/enregistrement', sql, function(enrSql, jwr) {
-      if (jwr.error) throw new Error(jwr.error);
-      console.dir(enrSql);
-      location.reload(); // TODO : callback
-    });
-  }
 
 </script>
 

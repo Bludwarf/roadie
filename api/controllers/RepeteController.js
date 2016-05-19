@@ -38,7 +38,8 @@ module.exports = {
       .populate('enregistrements', {
         sort: {
           ordre: 1,
-          timestamp: 1
+          timestamp: 1,
+          nom: 1
         }
       })
 
