@@ -10,6 +10,7 @@ var https = require('https');
 var request = require('request');
 var async = require('async');
 var URL = require('url');
+var google = require('googleapis');
 
 function getAuthUrl(req) {
   //var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl; // http://stackoverflow.com/a/10185427/1655155
@@ -70,7 +71,7 @@ module.exports = {
             redirect_uri: req.baseUrl + sails.config.google.redirect_path,
             client_id: sails.config.google.client_id,
             client_secret: sails.config.google.client_secret,
-            scope: "",
+            scope: sails.config.google.scope,
             grant_type: "authorization_code"
           }}, function(e, res, body) {
             console.log("token body :", body);

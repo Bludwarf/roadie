@@ -95,7 +95,8 @@
   <br/>
   <br/>
   <p>ou tout importer d'un coup depuis le dossier Google Drive :</p>
-  <input type="button" name="googleLinkButton" value="Importer tout le dossier" onclick="importGoogleFolder('<%= repete.googleId %>')" />
+  <input type="button" name="importGoogleFolderButton" value="Importer tout le dossier" onclick="this.disabled = true; importGoogleFolder('<%= repete.googleId %>')" />
+  <progress id="importGoogleFolderProgress" style="visibility: hidden;"></progress>
   <% } %>
 
 </form>

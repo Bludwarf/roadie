@@ -11,6 +11,7 @@ module.exports.google = {
   "token_uri": "https://accounts.google.com/o/oauth2/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
   "client_secret": "Y4EFeXZozYQyIP0troNs3QMU",
+  "scope": "https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/drive",
 
   "Clé API": "AIzaSyCxSmQGKZ9sEr5dfr6RtlRPpvr0_Tls-6w",
 

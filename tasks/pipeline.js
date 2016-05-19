@@ -30,6 +30,9 @@ var jsFilesToInject = [
   // ne pas mettre jQuery dedans quand on utilise Bower
   'js/dependencies/**/*.js',
 
+  // TODO : Google API distant ?
+  //'https://apis.google.com/js/client.js?onload=init',
+
   // Dépendance pour d'autres plugins
   'js/dist/jquery.js',
   'js/moment.js',
