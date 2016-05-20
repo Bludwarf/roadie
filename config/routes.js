@@ -43,7 +43,9 @@ module.exports.routes = {
   'GET /enregistrement/:id/set-morceau/:morceauId': 'EnregistrementController.setMorceau',
 
   /** access_token de Google oAuth */
-  'GET /google/token': 'GoogleController.token'
+  'GET /google/token': 'GoogleController.token',
+
+  'GET /enregistrement/:id.mp3': 'EnregistrementController.mp3'
 
   /***************************************************************************
   *                                                                          *

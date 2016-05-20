@@ -23,20 +23,24 @@ module.exports = {
     },
 
     /** lien pour télécharger */
-    fichier: {
-      type: 'string'
+    fichier: function() {
+      if (!this.googleFileId) return null;
+      return "https://docs.google.com/uc?export=download&id="+this.googleFileId;
     },
 
-    /** lien pour écouter */
-    audio: {
-      type: 'string'
+    /** Lien pour écouter directement le mp3 */
+    audio: function() {
+      return "/enregistrement/"+this.id+".mp3";
     },
     repete: {
       model: 'Repete'
     },
+    ordre: 'number',
     morceau: {
       model: 'Morceau'
-    }
+    },
+
+    googleFileId: 'string'
   }
 };
 
