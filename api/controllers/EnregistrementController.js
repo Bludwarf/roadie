@@ -104,7 +104,13 @@ module.exports = {
    * @param res
    */
   mp3: function(req, res) {
-    var tempFile = '.tmp/enregistrement/'+req.params.id+'.mp3';
+    var dir = ".tmp/enregistrement";
+    var tempFile = dir+'/'+req.params.id+'.mp3';
+
+    // Création du dossier (non automatique)
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+    }
 
     // Fichier déjà existant ?
     fs.exists(tempFile, function(exists) {
