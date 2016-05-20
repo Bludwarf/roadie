@@ -10,7 +10,6 @@ var https = require('https');
 var request = require('request');
 var async = require('async');
 var URL = require('url');
-var google = require('googleapis');
 
 function getAuthUrl(req) {
   //var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl; // http://stackoverflow.com/a/10185427/1655155
@@ -36,6 +35,10 @@ module.exports = {
    */
   token: function(req, res) {
     //var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl; // http://stackoverflow.com/a/10185427/1655155
+
+    // Conf calculée
+    var confGoogle = sails.config.google;
+    confGoogle.redirect_uri = req.baseUrl + confGoogle.redirect_path;
 
     /**
      * Token actuel

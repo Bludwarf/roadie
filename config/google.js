@@ -15,6 +15,9 @@ module.exports.google = {
 
   "Clé API": "AIzaSyCxSmQGKZ9sEr5dfr6RtlRPpvr0_Tls-6w",
 
-  "redirect_path" : "/google/token"
+  "redirect_path" : "/google/token",
+
+  /** ${req.baseUrl}${sails.config.google.redirect_path} */
+  "redirect_uri": null
 
 };

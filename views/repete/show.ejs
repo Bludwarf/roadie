@@ -52,8 +52,8 @@
   <!-- Lien pour télécharger directement : https://docs.google.com/uc?export=download&id=<%=enr.id%> -->
   <li class="list-group-item <%= !enr.morceau ? "list-group-item-warning" : "" %>">
 
-    <% if (enr.audio) { %>
-    <a href="<%= enr.audio %>" type="button" class="btn btn-xs" title="Lire l'enregistrement directement sur le web"><span class="glyphicon glyphicon-play-circle"></span></a>
+    <% if (enr.audio()) { %>
+    <a href="<%= enr.audio() %>" type="button" class="btn btn-xs" title="Lire l'enregistrement directement sur le web"><span class="glyphicon glyphicon-play-circle"></span></a>
     <% } %>
 
     <% if (enr.morceau) { %>

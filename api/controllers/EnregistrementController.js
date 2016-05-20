@@ -7,6 +7,14 @@
 
 var async = require('async');
 var GroupeController = require('./GroupeController');
+var fs = require('fs');
+var https = require('follow-redirects').https;
+var request = require('request');
+
+
+// Google
+var google = require('googleapis');
+var OAuth2 = google.auth.OAuth2;
 
 module.exports = {
 
@@ -87,6 +95,61 @@ module.exports = {
       }
     });
 
+  },
+
+  /**
+   * Le fichier mp3 temporairement stocké sur le serveur
+   * pour éviter d'appeler trop souvent les systèmes externes comme Google Drive.
+   * @param req
+   * @param res
+   */
+  mp3: function(req, res) {
+    var tempFile = '.tmp/enregistrement/'+req.params.id+'.mp3';
+
+    // Fichier déjà existant ?
+    fs.exists(tempFile, function(exists) {
+      if (exists) return res.mp3(tempFile);
+
+      // Création sinon
+      Enregistrement
+        .findOne(req.params.id)
+        //.populate('repete')
+        .exec(function(err, enrSql) {
+
+          if (err) return res.serverError(err);
+
+          var fileId = enrSql.googleFileId;
+
+          // lien vers le fichier non supporté
+          if (!fileId) return res.notFound("Lien vers le fichier externe inconnu");
+
+          sails.log.info("Récupération du mp3", fileId, '->', tempFile, '...');
+
+          // Retrieve tokens via token exchange explained above or set them:
+          var confGoogle = sails.config.google;
+          var oauth2Client = new OAuth2(confGoogle.client_id, confGoogle.client_secret, confGoogle.redirect_uri);
+
+          oauth2Client.setCredentials(req.session.google.token);
+          var drive = google.drive({version: 'v2', auth: oauth2Client});
+          var dest = fs.createWriteStream(tempFile);
+          drive.files.get({
+            fileId: fileId,
+            alt: 'media'
+          })
+            .on('end', function() {
+              sails.log.info("mp3 téléchargé dans", tempFile);
+              return res.mp3(tempFile);
+            })
+            .on('error', function(err) {
+              sails.log.error('Error during download', err);
+              fs.unlink(dest); // Delete the file async. (But we don't check the result)
+              return res.serverError(err);
+            })
+            .pipe(dest);
+
+        });
+
+    });
   }
 };
 
