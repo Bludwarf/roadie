@@ -33,6 +33,22 @@ module.exports.connections = {
   },
 
   /***************************************************************************
+   *                                                                          *
+   * MySQL is the world's most popular relational database.                   *
+   * http://en.wikipedia.org/wiki/MySQL                                       *
+   *                                                                          *
+   * Run: npm install sails-mysql                                             *
+   *                                                                          *
+   ***************************************************************************/
+  local: {
+    adapter: 'sails-mysql',
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'roadie'
+  },
+
+  /***************************************************************************
   *                                                                          *
   * MySQL is the world's most popular relational database.                   *
   * http://en.wikipedia.org/wiki/MySQL                                       *
@@ -40,7 +56,7 @@ module.exports.connections = {
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
-  mysql: {
+  cloud9: {
     adapter: 'sails-mysql',
     host: 'localhost',
     user: 'bludwarf',

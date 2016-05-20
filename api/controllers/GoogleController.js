@@ -10,13 +10,12 @@ var https = require('https');
 var request = require('request');
 var async = require('async');
 var URL = require('url');
-
-var redirect_uri = "http://localhost:1337/google/token";
+var google = require('googleapis');
 
 function getAuthUrl(req) {
   //var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl; // http://stackoverflow.com/a/10185427/1655155
   return "https://accounts.google.com/o/oauth2/auth?" + querystring.stringify({
-      redirect_uri: redirect_uri,
+      redirect_uri: req.baseUrl + sails.config.google.redirect_path,
       response_type: "code",
       client_id: sails.config.google.client_id,
       scope: "https://www.googleapis.com/auth/drive",
@@ -69,10 +68,10 @@ module.exports = {
         function getToken(req, cb) {
           request.post("https://www.googleapis.com/oauth2/v3/token", {form: {
             code: req.query.code,
-            redirect_uri: redirect_uri,
+            redirect_uri: req.baseUrl + sails.config.google.redirect_path,
             client_id: sails.config.google.client_id,
             client_secret: sails.config.google.client_secret,
-            scope: "",
+            scope: sails.config.google.scope,
             grant_type: "authorization_code"
           }}, function(e, res, body) {
             console.log("token body :", body);
@@ -89,6 +88,13 @@ module.exports = {
           // On stocke le token dans la session
           req.session.google = req.session.google || {};
           req.session.google.token = token;
+
+          // Redirect vers la page réellement demandée
+          var redirect_uri = req.session.redirect_uri;
+          if (redirect_uri) {
+            console.log("token : on retourne à", redirect_uri);
+            return res.redirect(redirect_uri);
+          }
 
           res.send(token);
         });

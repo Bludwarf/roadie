@@ -26,8 +26,13 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
+  '*': 'hasGoogleToken',
 //  '*': 'hasJsonWebToken',
-//  '*': 'hasJsonWebToken',
+
+  GoogleController: {
+    '*': false,
+    token: true
+  }
 
   /***************************************************************************
   *                                                                          *
