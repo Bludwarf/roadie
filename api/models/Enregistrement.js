@@ -35,6 +35,7 @@ module.exports = {
     repete: {
       model: 'Repete'
     },
+    ordre: 'number',
     morceau: {
       model: 'Morceau'
     },
