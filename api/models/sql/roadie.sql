@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS `enregistrement` (
   `ordre` int(11) DEFAULT NULL COMMENT 'Ordre dans la répète',
   `morceau` int(10) unsigned DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdAt` TIMESTAMP,
+  `updatedAt` timestamp,
   PRIMARY KEY (`id`),
   UNIQUE KEY `repeteId_ordre` (`repete`,`ordre`),
   KEY `FK_enregistrement_morceau` (`morceau`),
@@ -261,8 +261,8 @@ CREATE TABLE IF NOT EXISTS `gadjo` (
   `pseudo` varchar(50) DEFAULT NULL,
   `téléphone` varchar(14) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedAt` timestamp,
+  `createdAt` timestamp,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Personne pouvant être un musicien et pouvant jouer dans un groupe';
 
@@ -284,8 +284,8 @@ CREATE TABLE IF NOT EXISTS `groupe` (
   `motDePasse` varchar(50) DEFAULT NULL COMMENT 'Mot de passe du groupe pour se connecter à l''appli',
   `dureeRepete` int(10) unsigned DEFAULT '120' COMMENT 'Durée de la répète en générale (minutes)',
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdAt` timestamp,
+  `updatedAt` timestamp,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -303,8 +303,8 @@ CREATE TABLE IF NOT EXISTS `local` (
   `adresse` varchar(255) DEFAULT NULL,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image` varchar(255) DEFAULT NULL COMMENT 'Image du local pour faire joli',
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdAt` timestamp,
+  `updatedAt` timestamp,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
@@ -351,8 +351,8 @@ CREATE TABLE IF NOT EXISTS `morceau` (
   `nom` varchar(50) DEFAULT NULL,
   `groupe` int(10) unsigned DEFAULT NULL,
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdAt` timestamp,
+  `updatedAt` timestamp,
   PRIMARY KEY (`id`),
   KEY `FK_morceau_groupe` (`groupe`),
   CONSTRAINT `FK_morceau_groupe` FOREIGN KEY (`groupe`) REFERENCES `groupe` (`id`)
@@ -382,15 +382,15 @@ REPLACE INTO `morceau` (`nom`, `groupe`, `id`, `createdAt`, `updatedAt`) VALUES
 
 -- Export de la structure de table roadie. repete
 CREATE TABLE IF NOT EXISTS `repete` (
-  `debut` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fin` datetime DEFAULT CURRENT_TIMESTAMP,
+  `debut` TIMESTAMP NOT NULL,
+  `fin` TIMESTAMP,
   `groupe` int(10) unsigned NOT NULL,
   `local` int(10) unsigned NOT NULL,
   `notes` tinytext,
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `googleId` varchar(50) DEFAULT NULL COMMENT 'Lien vers un dossier Google Drive',
-  `createdAt` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `createdAt` timestamp,
+  `updatedAt` timestamp,
   PRIMARY KEY (`id`),
   KEY `FK_repete_local` (`local`),
   KEY `FK_répète_groupe` (`groupe`),
