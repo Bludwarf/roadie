@@ -11,9 +11,13 @@
  *          - pass string to render specified view
  */
 var fs = require('fs');
+var path = require('path');
 var async = require('async');
 
-module.exports = function mp3(file) {
+/**
+ * si on ajoute le paramètre filename alors le lien vers le mp3 devient un lien téléchargeable
+ */
+module.exports = function mp3(file, filename) {
 
   // Get access to `req`, `res`, & `sails`
   var req = this.req;
@@ -47,13 +51,15 @@ module.exports = function mp3(file) {
 
   ], function(err, stats, data) {
     if (err) return res.serverError(err);
-    res.writeHead(206, {
+	var headers = {
       'Accept-Ranges': 'bytes', // src : http://stackoverflow.com/questions/14304642/transcoding-and-streaming-audio-how-to-send-content-range-headers
       'Content-Length': data.length,
       'Content-Range': 'bytes 0-'+(data.length-1)+'/'+data.length, // TODO : prendre en compte le Range demandé par le client
       'Content-Type': 'audio/mpeg',
       'Last-Modified': new Date(stats.mtime) // exemple "Mon, 10 Jan 2011 18:23:27 GMT"
-    });
+    };
+	if (filename) headers['Content-Disposition'] = 'attachment; filename="'+filename+'.mp3"';
+    res.writeHead(206, headers);
     res.end(data, 'binary');
   });
 
