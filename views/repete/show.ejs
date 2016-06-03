@@ -53,8 +53,10 @@
   <li class="list-group-item <%= !enr.morceau ? "list-group-item-warning" : "" %>">
 
     <% if (enr.audio()) { %>
-    <a href="<%= enr.audio() %>" type="button" class="btn btn-xs" title="Lire l'enregistrement directement sur le web"><span class="glyphicon glyphicon-play-circle"></span></a>
+    <a href="<%= enr.audio() %>" type="button" class="btn btn-xs" title="Lire l'enregistrement directement sur le web (avec mise en cache)"><span class="glyphicon glyphicon-play-circle"></span></a>
     <% } %>
+	
+	<a href="<%= enr.fichier() %>" type="button" class="btn btn-xs" title="Télécharger directement l'enregistrement (sans mise en cache)"><span class="glyphicon glyphicon-save"></span></a>
 
     <% if (enr.morceau) { %>
     <!-- Morceau connu -->
@@ -64,7 +66,8 @@
     <a href="/enregistrement/<%=enr.id%>/set-morceau?from=<%=currentURLParam%>" title="Lier à un morceau"><span class="label label-warning">Morceau inconnu</span></a>
     <% } %>
 
-    <a href="<%= enr.fichier() %>" title="Télécharger l'enregistrement"><%= enr.nom %></a>
+	
+    <%= enr.nom %>
 
     <%
       // On ajoute une étiquette si on déjà rencontré le morceau dans la répète
