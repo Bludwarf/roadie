@@ -64,7 +64,7 @@
     <a href="/enregistrement/<%=enr.id%>/set-morceau?from=<%=currentURLParam%>" title="Lier à un morceau"><span class="label label-warning">Morceau inconnu</span></a>
     <% } %>
 
-    <a href="<%= enr.fichier %>" title="Télécharger l'enregistrement"><%= enr.nom %></a>
+    <a href="<%= enr.fichier() %>" title="Télécharger l'enregistrement"><%= enr.nom %></a>
 
     <%
       // On ajoute une étiquette si on déjà rencontré le morceau dans la répète

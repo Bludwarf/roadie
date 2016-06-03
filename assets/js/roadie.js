@@ -234,8 +234,7 @@ function importGoogleFile(id, cb) {
       var sql = {
         nom: googleFile.name,
         timestamp: googleFile.modifiedTime,
-        fichier: 'https://docs.google.com/uc?export=download&id=' + googleFile.id,
-        audio: 'https://drive.google.com/open?id=' + googleFile.id,
+        googleFileId: googleFile.id,
         // duree: TODO,
         repete: repeteId
       };
