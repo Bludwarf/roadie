@@ -39,6 +39,12 @@ Traitements :
 
 # Dev
 
+## Lancement de l'appli de prod
+
+    export NODE_ENV=production
+    mysql-ctl start
+    sails lift
+
 ## Installation de datetimepicker
 
     bower install eonasdan-bootstrap-datetimepicker#latest --save

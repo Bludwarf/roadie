@@ -5,10 +5,11 @@
     var now = new Date();
 
     // Recherche de la dernière et la prochaine répète
+    // on parcourt dans l'ordre chronologique inverse
     var prochaine, derniere;
     repetes.forEach(function(repete) {
       if (!derniere && repete.debut < now) derniere = repete;
-      if (repete.debut > now) prochaine = repete;
+      if (repete.debut >= now) prochaine = repete;
     });
 
     repetes.forEach(function(repete) {
