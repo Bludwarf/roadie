@@ -12,9 +12,7 @@
     "request": "^2.72.0",
     "sails": "~0.11.0",
     "sails-disk": "~0.10.0",
-    "sails-mysql": "^0.11.5",
-    "waterlock": "^0.1.2-rc1",
-    "waterlock-local-auth": "^0.1.2-rc1"
+    "sails-mysql": "^0.11.5"
   },
   "name": "roadie",
   "private": true,
