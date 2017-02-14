@@ -50,7 +50,7 @@ function googleInit() {
 }
 
 function googleManualAuth() {
-  io.socket.get('/google/token', function(token) {
+  io.socket.get('/google/token?socket=true', function(token) {
     gapi.auth.setToken(token);
   });
 }

@@ -1,4 +1,4 @@
-<h1><%= groupe.nom %> : Répètes <form action="/repete/new" method="GET" style="display: inline;"><button type="submit" class="btn btn-primary" title="Créer une répète"><span class="glyphicon glyphicon-plus"></span></button></form></h1>
+<h1><%= groupe.nom %> : Répètes <form action="/groupe/<%=groupe.id%>/repete/new" method="GET" style="display: inline;"><button type="submit" class="btn btn-primary" title="Créer une répète"><span class="glyphicon glyphicon-plus"></span></button></form></h1>
 <div class="list-group">
   <%
     var first = true;

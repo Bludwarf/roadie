@@ -3,7 +3,7 @@
  */
 module.exports.roadie = {
   groupe: {
-    nom: 'Grand Palace Trio'
-    //nom: 'Caféine'
+    //nom: 'Grand Palace Trio'
+    nom: 'Kerguelen'
   }
 };

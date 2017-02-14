@@ -26,7 +26,10 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  '*': 'hasGoogleToken',
+  '*': [
+    'hasGoogleToken',
+    'getGroupe' // si l'URL contient ":groupeId"
+  ],
 //  '*': 'hasJsonWebToken',
 
   GoogleController: {

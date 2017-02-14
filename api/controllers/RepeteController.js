@@ -6,26 +6,41 @@
  */
 
 var _ = require('lodash');
+var async = require('async');
 var GroupeController = require('./GroupeController');
 
 module.exports = {
   list: function(req, res) {
 
-    GroupeController.getCurrent(req, function(err, groupe) {
+    async.auto({
+    
+      // find groupe
+      groupe: function(cb) {
+        if (req.params.groupeId) {
+          Groupe.findOne({
+            id: req.params.groupeId
+          }).exec(cb);
+        }
+        else {
+          GroupeController.getCurrent(req, cb);
+        }
+      },
+      
+      // find répète
+      repetes: ['groupe', function(cb, results) {
+        var groupe = results.groupe;
+        Repete.find({
+          groupe: groupe.id
+        }).sort('debut DESC')
+          .populate('enregistrements')
+          .exec(cb);
+      }]
+    }, function(err, results) {
       if (err) return res.serverError(err);
-
-      Repete.find({
-        groupe: groupe.id
-      }).sort('debut DESC')
-        .populate('enregistrements')
-        .exec(function(err, repetes) {
-          res.view({
-            groupe: groupe,
-            repetes: repetes
-          });
-
-        });
-
+      res.view({
+        groupe: results.groupe,
+        repetes: results.repetes
+      });
     });
 
   },

@@ -20,5 +20,12 @@ module.exports = {
   // models: {
   //   connection: 'someMongodbServer'
   // }
+  
+  // donne l'accès à toutes les pages sans authent
+  policies: {
+    '*': [
+      'getGroupe'
+    ]
+  }
 
 };

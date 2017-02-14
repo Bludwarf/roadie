@@ -32,10 +32,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': 'RepeteController.list',
+  '/': 'GroupeController.index',
+  '/repetes': 'RepeteController.list',
 
-  'GET /repetes':     'RepeteController.list',
-  'GET /repete/new':  'RepeteController.new',
+  'GET /groupe/:groupeId/repetes':     'RepeteController.list',
+  'GET /groupe/:groupeId/repete/new':  'RepeteController.new',
   'GET /repete/:id':  'RepeteController.show',
 
   //'GET /repete/:id/upload-enregistrements':  'RepeteController.uploadEnregistrements', // directement dans repete
