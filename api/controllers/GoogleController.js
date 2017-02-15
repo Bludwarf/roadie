@@ -117,8 +117,7 @@ module.exports = {
 
     // On redemande un token à Monsieur Google si aucun token ou aucun code ou expiré
     var authUrl = getAuthUrl(req);
-    if (req.query.socket) { // http://sailsjs.com/documentation/reference/response-res/res-redirect
-      //return res.status(302); // TODO : comment renvoyer 302 sans appeler res.redirect ?
+    if (req.query.socket || !res.redirect) { // http://sailsjs.com/documentation/reference/response-res/res-redirect
       res.writeHead(302, {'Location': authUrl})
       return res.end();
     }
