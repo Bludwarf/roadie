@@ -115,6 +115,13 @@ module.exports = {
    */
   new: function(req, res) {
     res.view();
+  },
+  
+  create: function (req, res) {
+    Repete.create(req.body).exec(function (err, result) {
+      if (err) return res.serverError(err);
+      return res.redirect('/repete/'+result.id);
+    });
   }
 
 };

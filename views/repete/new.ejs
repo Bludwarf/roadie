@@ -4,12 +4,12 @@
 
   <input type="hidden" name="debut" />
   <input type="hidden" name="fin" />
-  <input type="hidden" name="groupe" value="1" />
+  <input type="hidden" name="groupe" value="<%=session.groupe.id%>" />
 
   <fieldset class="form-group">
     <label for="debutDate">Du</label> <input type="date" name="debutDate" id="debutDate">
-    <label for="debutTime">de</label> <input type="time" name="debutTime" id="debutTime" value="20:00">
-    <label for="finTime">à</label>    <input type="time" name="finTime"   id="finTime"   value="22:00">
+    <label for="debutTime">de</label> <input type="time" name="debutTime" id="debutTime" value="21:00">
+    <label for="finTime">à</label>    <input type="time" name="finTime"   id="finTime"   value="23:00">
   </fieldset>
 
   <fieldset class="form-group">
