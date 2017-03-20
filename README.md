@@ -1,3 +1,22 @@
+# Organisation Google Drive
+
+  - Albums
+    - On tour
+      - À boire.mp3
+  - Concerts
+    - 20160924 - Goven
+      - Setlist.pdf
+      - À boire.mp3
+  - Morceaux
+    - À boire
+      - À boire.mp3 (symlink vers Répète X)
+      - À boire.mp3 (symlink vers Concert X)
+      - À boire.mp3 (symlink vers Album X)
+      - À boire.pdf
+  - Répètes
+    - 20160820 - Rennes
+      - À boire.mp3
+
 # Répète
 
 ## Création
@@ -37,6 +56,25 @@ Traitements :
   - On ordonne les fichiers uploadés en fonction de l'ordre d'upload
   - L'idéal serait d'activer une option permettant de choisir si on peut tenir compte du timestamp du fichier
 
+
+# Concert
+
+## Préparation d'un concert
+
+On doit pouvoir ressortir rapidement tous les morceaux d'une Set list avec :
+
+  - La structure
+  - L'enregistrement choisi parmi tous ceux existant (pour bosser le morceau)
+  - Les paroles (si présentes)
+  - Le RAF de chaque morceau (avec icône)
+    - Structure (au dessus des 5 suivantes)
+  - Le RAF de chaque section
+    - Accords (clé de sol)
+    - Notes
+    - Paroles (mégaphone)
+    - Interprétation (mf de solfège)
+    - Son
+  
 # Dev
 
 ## Lancement de l'appli de prod
