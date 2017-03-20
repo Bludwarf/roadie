@@ -33,6 +33,7 @@ module.exports = {
           .find({
             groupe: groupe.id
           })
+          .sort('nom')
           .exec(cb);
       }
     }, function(err, results) {
@@ -101,6 +102,7 @@ module.exports = {
    * Le fichier mp3 temporairement stocké sur le serveur
    * pour éviter d'appeler trop souvent les systèmes externes comme Google Drive.
    * @param req
+   *          ?filename=monFichier.mp3 => pour créer un lien téléchargeable (lecture depuis VLC par exemple)
    * @param res
    */
   mp3: function(req, res) {
@@ -114,7 +116,7 @@ module.exports = {
 
     // Fichier déjà existant ?
     fs.exists(tempFile, function(exists) {
-      if (exists) return res.mp3(tempFile);
+      if (exists) return res.mp3(tempFile, req.query.filename);
 
       // Création sinon
       Enregistrement
@@ -130,25 +132,36 @@ module.exports = {
           if (!fileId) return res.notFound("Lien vers le fichier externe inconnu");
 
           sails.log.info("Récupération du mp3", fileId, '->', tempFile, '...');
+          var dest = fs.createWriteStream(tempFile);
 
           // Retrieve tokens via token exchange explained above or set them:
           var confGoogle = sails.config.google;
           var oauth2Client = new OAuth2(confGoogle.client_id, confGoogle.client_secret, confGoogle.redirect_uri);
 
-          oauth2Client.setCredentials(req.session.google.token);
+          // FIXME : download mp3 sans token (comme Google Drive)
+          if (req.session.google && req.session.google.token) {
+            oauth2Client.setCredentials(req.session.google.token);
+          } else {
+            sails.log.info("On tente de télécharger le fichier sans token en utilisant le lien d'export...");
+            
+            var exportUrl = 'https://docs.google.com/uc?id='+fileId+'&export=mp3';
+            return request(exportUrl).pipe(dest).on('finish', function () {
+              return res.mp3(tempFile, req.query.filename);    
+            });
+          }
+          
           var drive = google.drive({version: 'v2', auth: oauth2Client});
-          var dest = fs.createWriteStream(tempFile);
           drive.files.get({
             fileId: fileId,
             alt: 'media'
           })
             .on('end', function() {
               sails.log.info("mp3 téléchargé dans", tempFile);
-              return res.mp3(tempFile);
+              return res.mp3(tempFile, req.query.filename);
             })
             .on('error', function(err) {
               sails.log.error('Error during download', err);
-              fs.unlink(dest); // Delete the file async. (But we don't check the result)
+              fs.unlink(dest); // Delete the file async. (But we don't check the result) : FIXME : réalisé avant pipe car le fichier existe encore
               return res.serverError(err);
             })
             .pipe(dest);

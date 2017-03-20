@@ -35,6 +35,11 @@ module.exports.policies = {
   GoogleController: {
     '*': false,
     token: true
+  },
+  
+  // On désactiver le google token pour l'export de MP3 sinon VLC ne peut pas lancer de playlist
+  EnregistrementController: {
+    '*': true
   }
 
   /***************************************************************************

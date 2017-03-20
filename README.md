@@ -1,3 +1,22 @@
+# Organisation Google Drive
+
+  - Albums
+    - On tour
+      - À boire.mp3
+  - Concerts
+    - 20160924 - Goven
+      - Setlist.pdf
+      - À boire.mp3
+  - Morceaux
+    - À boire
+      - À boire.mp3 (symlink vers Répète X)
+      - À boire.mp3 (symlink vers Concert X)
+      - À boire.mp3 (symlink vers Album X)
+      - À boire.pdf
+  - Répètes
+    - 20160820 - Rennes
+      - À boire.mp3
+
 # Répète
 
 ## Création
@@ -36,7 +55,57 @@ Traitements :
   - Crée la répète pour ce groupe
   - On ordonne les fichiers uploadés en fonction de l'ordre d'upload
   - L'idéal serait d'activer une option permettant de choisir si on peut tenir compte du timestamp du fichier
+  
+## Génération d'une playlist
 
+Pour l'instant deux options sont disponibles pour lire un MP3 depuis une playlist VLC :
+  - d'abord lire chaque mp3 dans un navigateur pour mettre en cache le fichier et utiliser le token Google
+  - partager le lien de chaque mp3 depuis Google Drive
+  
+Ensuite il suffit d'ajouter le code XML suivant pour chaque mp3 :
+
+```
+<track>
+    <location>http://localhost:1337/enregistrement/{id}.mp3?filename={fichier}.mp3</location>
+    <title>{fichier}</title>
+    <album>Répète 2017-03-13</album>
+    <duration>-1</duration>
+    <extension application="http://www.videolan.org/vlc/playlist/0">
+        <vlc:id>0</vlc:id>
+        <vlc:option>network-caching=1000</vlc:option>
+    </extension>
+</track>
+```
+
+Incrémenter le vlc:id et ajouter la ligne suivante :
+
+```
+<extension application="http://www.videolan.org/vlc/playlist/0">
+    <vlc:item tid="0"/>
+    <vlc:item tid="1"/>
+    ...
+</extension>
+```
+
+
+# Concert
+
+## Préparation d'un concert
+
+On doit pouvoir ressortir rapidement tous les morceaux d'une Set list avec :
+
+  - La structure
+  - L'enregistrement choisi parmi tous ceux existant (pour bosser le morceau)
+  - Les paroles (si présentes)
+  - Le RAF de chaque morceau (avec icône)
+    - Structure (au dessus des 5 suivantes)
+  - Le RAF de chaque section
+    - Accords (clé de sol)
+    - Notes
+    - Paroles (mégaphone)
+    - Interprétation (mf de solfège)
+    - Son
+  
 # Dev
 
 ## Lancement de l'appli de prod
