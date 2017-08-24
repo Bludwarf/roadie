@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
+	<title>Liste de lecture</title>
+	<trackList>
+		<track>
+			<location>https://docs.google.com/uc?id=0B5UYlocMkj-eQUtlVFpfVjRHSUhDaFFTVjFFUTEtUXo0WFZn&amp;export=mp3</location>
+			<title>Changer de face</title>
+			<creator>Didaf&#39;ta</creator>
+			<album>Répète 2017-03-09</album>
+			<duration>204329</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>0</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>https://docs.google.com/uc?id=0B5UYlocMkj-eWmk1VEpZS3VfQmNvbEdTTmM3SzZGWFBUTkQ4&amp;export=mp3</location>
+			<title>Le jour</title>
+			<creator>Didaf&#39;ta</creator>
+			<duration>319851</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>1</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>https://docs.google.com/uc?id=0B5UYlocMkj-ebVFlMndicE9wZ0ZNeGJGWXB2V0ljdThZZ3NB&amp;export=mp3</location>
+			<title>Vito</title>
+			<creator>Didaf&#39;ta</creator>
+			<duration>185995</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>2</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>https://docs.google.com/uc?id=0B5UYlocMkj-eWC1CSDZRX3pTOTlpUVdEdDJVaFN2YmdWS0sw&amp;export=mp3</location>
+			<title>A bout de souffle</title>
+			<creator>Didaf&#39;ta</creator>
+			<duration>257824</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>3</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>https://docs.google.com/uc?id=0B5UYlocMkj-eOTNoYVpYanlvclJkRkgxeW43Z1NoNTdfaHo0&amp;export=mp3</location>
+			<title>Valse de l&#39;homme oiseau</title>
+			<creator>Didaf&#39;ta</creator>
+			<duration>250151</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>4</vlc:id>
+			</extension>
+		</track>
+		<track>
+			<location>https://docs.google.com/uc?id=0B5UYlocMkj-eQmYwVEthWkhaVERxekpSS3lxVERrR1YzamdV&amp;export=mp3</location>
+			<title>La croix</title>
+			<creator>Didaf&#39;ta</creator>
+			<duration>316749</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>5</vlc:id>
+			</extension>
+		</track>
+	</trackList>
+	<extension application="http://www.videolan.org/vlc/playlist/0">
+			<vlc:item tid="0"/>
+			<vlc:item tid="1"/>
+			<vlc:item tid="2"/>
+			<vlc:item tid="3"/>
+			<vlc:item tid="4"/>
+			<vlc:item tid="5"/>
+	</extension>
+</playlist>

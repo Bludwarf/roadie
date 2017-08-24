@@ -1,0 +1,48 @@
+<html ng-app="app">
+	<head>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.1/angular.min.js"></script>
+		<script src="app.js"></script>
+
+
+		<!--<link rel="stylesheet" type="text/css" href="../../public/ableton-live.css" />-->
+		<link rel="stylesheet" type="text/css" href="grid.css" />
+
+		<style>
+			#audio {
+				width: 800px;
+				max-width: 100%;
+			}
+		</style>
+	</head>
+	<body ng-controller="ctrl">
+
+		<h1>{{song.name}}</h1>
+
+		<!-- Ligne dans la grille -->
+		<div class="line" ng-repeat="line in lines">
+
+			<div class="section" ng-repeat="section in line.sections" ng-style="{width: section.measures.length/maxMeasuresPerLine*100+'%', left: section.offset/maxMeasuresPerLine*100+'%', position: 'relative'}">
+
+				<div class="section-name-wrapper">
+          <div class="section-name truncate">
+            {{section.name}}
+          </div>
+				</div>
+
+        <div class="section-patterns">
+          <div class="pattern Color-{{pattern.colorIndex}}" ng-repeat="pattern in section.patterns" ng-style="{'border-color': pattern.colorIndex, width: pattern.measures.length/section.measures.length*100+'%'}">
+
+            <div class="measure Color-{{pattern.colorIndex}}" ng-repeat="measure in pattern.measures" ng-style="{width: 100/pattern.measures.length+'%'}">
+              <span class="chord">{{measure.chord}}</span>
+            </div>
+
+          </div>
+        </div><!-- section-patterns -->
+
+			</div><!-- section -->
+
+		</div><!-- line -->
+
+	</body>
+</html>

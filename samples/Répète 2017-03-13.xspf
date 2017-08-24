@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<playlist xmlns="http://xspf.org/ns/0/" xmlns:vlc="http://www.videolan.org/vlc/playlist/ns/0/" version="1">
+	<title>Liste de lecture</title>
+	<trackList>
+		<track>
+			<location>http://localhost:1337/enregistrement/20.mp3?filename=test.mp3</location>
+			<title>A la petite semaine</title>
+			<album>Répète 2017-03-13</album>
+			<duration>273900</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>0</vlc:id>
+				<vlc:option>network-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>http://localhost:1337/enregistrement/19.mp3?filename=test.mp3</location>
+			<title>All I Want</title>
+			<album>Répète 2017-03-13</album>
+			<duration>245740</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>1</vlc:id>
+				<vlc:option>network-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>http://localhost:1337/enregistrement/18.mp3?filename=test.mp3</location>
+			<title>Downtown</title>
+			<album>Répète 2017-03-13</album>
+			<duration>259162</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>2</vlc:id>
+				<vlc:option>network-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>http://localhost:1337/enregistrement/17.mp3?filename=test.mp3</location>
+			<title>Just like a man</title>
+			<album>Répète 2017-03-13</album>
+			<duration>308229</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>3</vlc:id>
+				<vlc:option>network-caching=1000</vlc:option>
+			</extension>
+		</track>
+		<track>
+			<location>http://localhost:1337/enregistrement/16.mp3?filename=test.mp3</location>
+			<title>Les aléas climatiques</title>
+			<album>Répète 2017-03-13</album>
+			<duration>507457</duration>
+			<extension application="http://www.videolan.org/vlc/playlist/0">
+				<vlc:id>4</vlc:id>
+				<vlc:option>network-caching=1000</vlc:option>
+			</extension>
+		</track>
+	</trackList>
+	<extension application="http://www.videolan.org/vlc/playlist/0">
+			<vlc:item tid="0"/>
+			<vlc:item tid="1"/>
+			<vlc:item tid="2"/>
+			<vlc:item tid="3"/>
+			<vlc:item tid="4"/>
+	</extension>
+</playlist>
