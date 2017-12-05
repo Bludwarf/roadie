@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "async": "^1.5.2",
-    "ejs": "~0.8.4",
+    "ejs": "~2.5.5",
     "follow-redirects": "^0.1.0",
     "googleapis": "^7.0.0",
     "grunt-bower": "^0.21.0",
