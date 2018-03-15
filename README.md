@@ -108,6 +108,24 @@ On doit pouvoir ressortir rapidement tous les morceaux d'une Set list avec :
   
 # Dev
 
+## Installation
+
+MySQL : 5.5 minimum
+
+Lancer scripts/sql/init-db.sql.
+
+Ajouter un groupe dans la table groupe.
+
+Reporter le nom du groupe dans le fichier config/roadie.js. Exemple : 
+
+```
+module.exports.roadie = {
+  groupe: {
+    nom: 'Didaf\'ta'
+  }
+};
+```
+
 ## Lancement de l'appli de prod
 
     export NODE_ENV=production

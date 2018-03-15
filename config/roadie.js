@@ -4,6 +4,7 @@
 module.exports.roadie = {
   groupe: {
     //nom: 'Grand Palace Trio'
-    nom: 'Kerguelen'
+    //nom: 'Kerguelen'
+    nom: 'Didaf\'ta'
   }
 };
