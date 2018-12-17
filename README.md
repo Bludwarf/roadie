@@ -110,9 +110,20 @@ On doit pouvoir ressortir rapidement tous les morceaux d'une Set list avec :
 
 ## Installation
 
+### Uniquement la première fois
+
 MySQL : 5.5 minimum
 
-Lancer scripts/sql/init-db.sql.
+Lancer les scripts SQL :
+  - scripts/sql/init-db.sql.
+  - api/models/sql/tables.sql
+  - api/models/sql/foreign_keys.sql (si ça marche !)
+  
+Rappel pour lancer un script :
+
+```
+mysql roadie --user=roadie -p < fichier
+```
 
 Ajouter un groupe dans la table groupe.
 
@@ -126,11 +137,40 @@ module.exports.roadie = {
 };
 ```
 
+### À chaque modif
+
+Installer les dépendances :
+
+```
+npm install
+bower install
+
+npm install -g pm2
+npm install -g pm2-gui
+```
+
+Si `npm install` ne termine pas bien => installer tout sauf sails et démarrer quand même l'appli (si sails installé globalement).
+
+Pour démarrer l'appli et la garder tout le temps en vie :
+
+```
+pm2 start app.js --name roadie -- --prod
+pm2 save
+pm2 startup
+```
+
 ## Lancement de l'appli de prod
 
     export NODE_ENV=production
     mysql-ctl start
     sails lift
+    
+Actuellement on doit créer un host sur chaque machine car Google n'autorise pas les token pour des DNS maison.
+Fichier host :
+
+```
+<ip pour aller vers le serveur> bluberry.bludwarf.fr
+```
 
 ## Installation de datetimepicker
 
